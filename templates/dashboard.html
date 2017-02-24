@@ -1,0 +1,78 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+    <style>
+        .col_4 li {
+            width: 20%;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="quick-actions_homepage">
+        <ul class="quick-actions">
+            <li class="bg_ly span3">
+                <a href="javascript:void(0)"><i class="icon-home"></i> 控制台</a>
+            </li>
+            <li class="bg_lg span3">
+                <a href="{{ url_for('core.articles') }}"><i class="icon-signal"></i> 文章</a>
+            </li>
+            <li class="bg_lo span3">
+                <a href="{{ url_for('core.following') }}"><i class="icon-user"></i> 关注</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="widget-box">
+        <div class="widget-title bg_lg">
+            <span class="icon"><i class="icon-signal"></i></span>
+            <h5>用户详情</h5>
+        </div>
+        <div class="widget-content">
+            <div class="row-fluid">
+                <ul class="site-stats col_4">
+                    <li class="bg_lh">
+                        <i class="icon-thumbs-up"></i>
+                        <strong>{{ user_info.like_count }}</strong>
+                        <small>被赞同</small>
+                    </li>
+                    <li class="bg_lh">
+                        <i class="icon-star"></i>
+                        <strong>{{ user_info.following_count }}</strong>
+                        <small>关注了</small>
+                    </li>
+                    <li class="bg_lh">
+                        <i class="icon-rss"></i>
+                        <strong>{{ user_info.follower_count }}</strong>
+                        <small>被关注</small>
+                    </li>
+                    <li class="bg_lh">
+                        <i class="icon-heart"></i>
+                        <strong>{{ user_info.topics_count }}</strong>
+                        <small>关注的话题</small>
+                    </li>
+                    <li class="bg_lh">
+                        <i class="icon-magic"></i>
+                        <strong>{{ user_info.columns_count }}</strong>
+                        <small>关注的专栏</small>
+                    </li>
+                    <li class="bg_lh">
+                        <i class="icon-question-sign"></i>
+                        <strong>{{ user_info.questions_count }}</strong>
+                        <small>关注的问题</small>
+                    </li>
+                    <li class="bg_lh">
+                        <i class="icon-ok"></i>
+                        <strong>{{ user_info.collections_count }}</strong>
+                        <small>关注的收藏夹</small>
+                    </li>
+                    <li class="bg_lh">
+                        <i class="icon-dashboard"></i>
+                        <strong>{{ user_info.views_count }}</strong>
+                        <small>主页被浏览次数</small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

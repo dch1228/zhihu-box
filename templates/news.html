@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% set active_bar = 'news' %}
+
+{% block title %}最新动态{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block breadcrumb %}
+<div id="breadcrumb"> <a href="javascript:void(0)" title="最新动态" class="tip-bottom"><i class="icon-book"></i> 动态</a></div>
+{% endblock %}
+
+{% block content %}
+    <div class="widget-box">
+        <div class="widget-title bg_ly">
+            <span class="icon"><i class="icon-caret-down"></i></span>
+            <h5>最新动态</h5>
+        </div>
+        <div class="widget-content nopadding collapse in">
+            <ul class="recent-posts">
+                {% for item in items %}
+                    <li>
+                        <div class="user-thumb"> <img width="40" height="40" src="/zhihu_avatar/{{ item.avatar }}" /> </div>
+                        <div class="article-post">
+                            <span class="user-info">{{ item.title }}</span>
+                            <p>
+                                <a href="https://www.zhihu.com{{ item.href }}" target="_blank">{{ item.content }}</a>
+                            </p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

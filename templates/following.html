@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% set active_bar = 'following' %}
+
+{% block title %}关注列表{% endblock %}
+
+{% block breadcrumb %}
+<div id="breadcrumb"> <a href="{{ url_for('core.following') }}" title="关注列表" class="tip-bottom"><i class="icon-user"></i> 关注</a></div>
+{% endblock %}
+
+{% block content %}
+<div class="widget-box">
+    <div class="widget-title">
+    </div>
+    <div class="widget-content nopadding">
+        <table class="table table-bordered data-table">
+            <thead>
+                <tr>
+                    <th>标题</th>
+                    <th>描述</th>
+                    <th>文章数</th>
+                    <th>关注数</th>
+                    <th>跳转</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for following in following_list %}
+                <tr>
+                    <td>{{ following.title }}</td>
+                    <td>{{ following.meta }}</td>
+                    <td>{{ following.articles_count }} 个赞</td>
+                    <td>{{ following.following_count }} 条评论</td>
+                    <td><a href="{{ following.href }}" target="_blank"><i class="icon-external-link"></i> 跳转</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+{% set active_bar = 'articles' %}
+
+{% block title %}文章列表{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/uniform.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/select2.css') }}" />
+{% endblock %}
+
+{% block breadcrumb %}
+<div id="breadcrumb"> <a href="javascript:void(0)" title="文章列表" class="tip-bottom"><i class="icon-book"></i> 文章</a></div>
+{% endblock %}
+
+{% block content %}
+<div class="widget-box">
+    <div class="widget-title">
+    </div>
+    <div class="widget-content nopadding">
+        <table class="table table-bordered data-table">
+            <thead>
+                <tr>
+                    <th>标题</th>
+                    <th>作者</th>
+                    <th>发布时间</th>
+                    <th>赞</th>
+                    <th>评论</th>
+                    <th>跳转</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for article in articles_list %}
+                <tr>
+                    <td>{{ article.title }}</td>
+                    <td>{{ article.author }}</td>
+                    <td>{{ article.release_time }}</td>
+                    <td>{{ article.like_count }} 个赞</td>
+                    <td>{{ article.like_count }} 条评论</td>
+                    <td><a href="{{ article.href }}" target="_blank"><i class="icon-external-link"></i> 跳转</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ url_for('static', filename='js/jquery.ui.custom.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.uniform.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/select2.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/matrix.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/matrix.tables.js') }}"></script>
+{% endblock %}

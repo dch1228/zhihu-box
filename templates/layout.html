@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{% block title %}知乎专栏管理{% endblock %}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/matrix-style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/matrix-media.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome/css/font-awesome.css') }}" />
+
+    {% block css %}{% endblock %}
+
+</head>
+
+<body>
+
+<!--Header-part-->
+<div id="header">
+  <h1><a href="javascript:void(0)">知乎专栏管理</a></h1>
+</div>
+<!--close-Header-part--> 
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li  class="dropdown" id="profile-messages" ><a title="" href="javascript:void(0)" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome User</span><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="javascript:void(0)"><i class="icon-key"></i> 退出登录</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<!--close-top-Header-menu-->
+
+<!--sidebar-menu-->
+<div id="sidebar">
+    {% set sidebar = [
+        ("控制台", "core.index", "index", "icon icon-home"),
+        ("文章列表", "core.articles", "articles", "icon icon-book"),
+        ("关注列表", "core.following", "following", "icon icon-user"),
+        ("最新动态", "core.news", "news", "icon icon-envelope"),
+    ] -%}
+
+    {% set active_bar = active_bar|default("index") -%}
+
+    <ul>
+        {% for capiton, href, id, class in sidebar %}
+            <li class="{% if id == active_bar %}active{% endif %}">
+                <a href="{{ url_for(href) }}"><i class="{{ class }}"></i> <span>{{ capiton }}</span></a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+<!--breadcrumbs-->
+    <div id="content-header">
+        {% block breadcrumb %}
+        <div id="breadcrumb"> <a href="javascript:void(0)" title="首页" class="tip-bottom"><i class="icon-home"></i> 控制台</a></div>
+        {% endblock %}
+    </div>
+<!--End-breadcrumbs-->
+
+    <div class="container-fluid">
+        {% block content %}{% endblock %}
+    </div>
+
+</div>
+
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+
+<div class="row-fluid">
+  <div id="footer" class="span12"> 2017 &copy; 知乎专栏管理. Brought to you by <a href="javascript:void(0)">杜晨昊</a> </div>
+</div>
+
+<!--end-Footer-part-->
+
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+{% block js %}{% endblock %}
+
+</body>
+
+</html>
